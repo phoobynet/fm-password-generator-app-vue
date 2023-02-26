@@ -27,8 +27,13 @@ const { password } = usePasswordGenerator()
   padding: 1rem;
 
   .text {
+    display: inline-block;
+    overflow: hidden;
+    max-width: 90%;
     font-size: var(--fs-large);
     line-height: 1.98rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .icon {

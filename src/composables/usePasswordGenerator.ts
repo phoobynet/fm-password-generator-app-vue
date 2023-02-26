@@ -1,41 +1,39 @@
+import { debouncedWatch } from '@vueuse/core'
 import { generate } from 'generate-password-browser'
-import { ref, watch } from 'vue'
+import { reactive, ref, toRefs } from 'vue'
+
+export interface PasswordOptions {
+	length?: number
+	uppercase?: boolean
+	lowercase?: boolean
+	numbers?: boolean
+	symbols?: boolean
+}
 
 const password = ref<string>('')
-const length = ref<number>(10)
-const uppercase = ref<boolean>(true)
-const lowercase = ref<boolean>(true)
-const numbers = ref<boolean>(true)
-const symbols = ref<boolean>(false)
-
-password.value = generate({
-	length: length.value,
-	uppercase: uppercase.value,
-	lowercase: lowercase.value,
-	numbers: numbers.value,
-	symbols: symbols.value,
+const options = reactive<PasswordOptions>({
+	length: 10,
+	uppercase: true,
+	lowercase: true,
+	numbers: true,
+	symbols: false,
 })
 
+password.value = generate(options)
+
 export const usePasswordGenerator = () => {
-	watch(
-		[length, uppercase, lowercase, numbers, symbols],
-		([newLength, newUppercase, newLowercase, newNumbers, newSymbols]) => {
-			password.value = generate({
-				length: newLength,
-				uppercase: newUppercase,
-				lowercase: newLowercase,
-				numbers: newNumbers,
-				symbols: newSymbols,
-			})
+	debouncedWatch(
+		options,
+		(newOptions) => {
+			password.value = generate(newOptions)
+		},
+		{
+			debounce: 1000,
 		},
 	)
 
 	return {
 		password,
-		length,
-		uppercase,
-		lowercase,
-		numbers,
-		symbols,
+		...toRefs(options),
 	}
 }

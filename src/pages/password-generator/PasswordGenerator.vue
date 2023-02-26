@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import GeneratedPassword from './components/GeneratedPassword.vue'
-import Header from './components/Header.vue'
-import Options from './components/Options'
+import { GeneratedPassword, Header, Options } from './components'
 </script>
 
 <template>

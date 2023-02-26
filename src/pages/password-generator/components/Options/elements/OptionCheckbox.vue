@@ -8,10 +8,10 @@ const props = defineProps<{
 
 const emit = defineEmits(['update:modelValue'])
 
-const checkboxValue = computed<string>({
-  get: () => (props.modelValue ? 'checked' : ''),
+const checkboxValue = computed<boolean>({
+  get: () => props.modelValue,
 
-  set: (value) => emit('update:modelValue', value === 'checked'),
+  set: (value) => emit('update:modelValue', value),
 })
 </script>
 

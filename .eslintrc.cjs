@@ -7,21 +7,19 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'standard-with-typescript',
     'stylelint',
-    'prettier'
+    'prettier',
   ],
   overrides: [],
   parser: 'vue-eslint-parser',
   parserOptions: {
-    parser: "@typescript-eslint/parser",
+    parser: '@typescript-eslint/parser',
     ecmaVersion: 'latest',
     sourceType: 'module',
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json'],
     extraFileExtensions: ['.vue'],
   },
-  plugins: [
-    'vue',
-  ],
+  plugins: ['vue'],
   rules: {
     'sort-imports': 'off',
     'node/no-missing-import': 'off',
@@ -33,6 +31,7 @@ module.exports = {
     '@typescript-eslint/return-await': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/triple-slash-reference': 'off',
+    'no-console': 'off',
   },
   ignorePatterns: ['vite.config.ts', 'dist', 'node_modules'],
 }
