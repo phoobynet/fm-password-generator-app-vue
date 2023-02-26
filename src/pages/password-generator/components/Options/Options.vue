@@ -3,6 +3,7 @@ import {
   LowercaseCheckbox,
   NumbersCheckbox,
   OptionLengthSlider,
+  StrengthIndicator,
   SymbolsCheckbox,
   UppercaseCheckbox,
 } from './elements'
@@ -26,6 +27,7 @@ const { length } = usePasswordGenerator()
         <NumbersCheckbox />
         <SymbolsCheckbox />
       </div>
+      <StrengthIndicator />
     </div>
   </Container>
 </template>

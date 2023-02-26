@@ -23,6 +23,7 @@ module.exports = {
   rules: {
     'sort-imports': 'off',
     'node/no-missing-import': 'off',
+    'no-shadow': 'off',
     'vue/multi-word-component-names': 'off',
     'newline-per-chained-call': ['error', { ignoreChainWithDepth: 2 }],
     '@typescript-eslint/no-non-null-assertion': 'off',
@@ -31,6 +32,7 @@ module.exports = {
     '@typescript-eslint/return-await': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/triple-slash-reference': 'off',
+    '@typescript-eslint/no-shadow': 'warn',
     'no-console': 'off',
   },
   ignorePatterns: ['vite.config.ts', 'dist', 'node_modules'],
