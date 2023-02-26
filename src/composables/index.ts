@@ -1,0 +1,1 @@
+export { usePasswordGenerator } from './usePasswordGenerator'
