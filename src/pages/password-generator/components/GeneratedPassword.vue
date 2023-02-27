@@ -3,16 +3,44 @@ import { Container } from '@/components'
 import { usePasswordGenerator } from '@/composables'
 import { faCopy } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { computed } from 'vue'
 
-const { password } = usePasswordGenerator()
+const { password, invalidOptions } = usePasswordGenerator()
+
+const iconClass = computed(() => ({
+  icon: true,
+  'icon-error': invalidOptions.value,
+}))
+
+const onCopy = () => {
+  if (invalidOptions.value) {
+    return
+  }
+
+  navigator.clipboard.writeText(password.value)
+}
 </script>
 
 <template>
   <Container>
-    <div class="password">
-      <p class="text">{{ password }}</p>
+    <div
+      class="password"
+      @click="onCopy"
+    >
+      <p
+        v-if="invalidOptions"
+        class="text error"
+      >
+        Invalid options
+      </p>
+      <p
+        v-else
+        class="text"
+      >
+        {{ password }}
+      </p>
       <FontAwesomeIcon
-        class="icon"
+        :class="iconClass"
         :icon="faCopy"
       />
     </div>
@@ -22,6 +50,7 @@ const { password } = usePasswordGenerator()
 <style lang="scss" scoped>
 .password {
   display: flex;
+  height: 4rem;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
@@ -36,10 +65,20 @@ const { password } = usePasswordGenerator()
     white-space: nowrap;
   }
 
+  .error {
+    color: var(--clr-red);
+    font-size: var(--fs-small) !important;
+  }
+
   .icon {
     color: var(--clr-neon-green);
     cursor: pointer;
     font-size: var(--fs-base);
+  }
+
+  .icon-error {
+    color: var(--clr-grey);
+    cursor: not-allowed;
   }
 
   @media (min-width: 768px) {

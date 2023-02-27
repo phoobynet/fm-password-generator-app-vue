@@ -22,6 +22,7 @@ import { GeneratedPassword, Header, Options } from './components'
 .content {
   display: flex;
   flex-direction: column;
+  padding-top: 4rem;
   gap: 1rem;
 
   @media screen and (min-width: 768px) {

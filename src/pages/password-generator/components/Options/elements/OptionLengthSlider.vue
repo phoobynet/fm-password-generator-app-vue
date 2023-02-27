@@ -4,7 +4,7 @@ import { usePasswordGenerator } from '@/composables'
 const minLength = 8
 const maxLength = 28
 
-const { length } = usePasswordGenerator()
+const { length, invalidOptions } = usePasswordGenerator()
 </script>
 
 <template>
@@ -15,6 +15,7 @@ const { length } = usePasswordGenerator()
       :max="maxLength"
       :step="1"
       :value="length"
+      :disabled="invalidOptions"
       @change="length = $event.target.value"
     />
   </div>

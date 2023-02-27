@@ -1,13 +1,12 @@
-import { debouncedWatch } from '@vueuse/core'
 import { passwordStrength } from 'check-password-strength'
 import { generate } from 'generate-password-browser'
-import { reactive, ref, toRefs } from 'vue'
+import { computed, reactive, ref, toRefs, watch } from 'vue'
 
 export enum StrengthLevel {
-	TooWeak = 'Too Weak',
-	Weak = 'Weak',
-	Medium = 'Medium',
-	Strong = 'Strong',
+	TooWeak = 1,
+	Weak = 2,
+	Medium = 3,
+	Strong = 4,
 }
 
 export interface PasswordOptions {
@@ -28,33 +27,49 @@ const options = reactive<PasswordOptions>({
 	symbols: false,
 })
 
-password.value = generate(options)
+const invalidOptions = computed<boolean>(() => {
+	const { uppercase, lowercase, numbers, symbols } = options
+
+	return [uppercase, lowercase, numbers, symbols].every((value) => !value)
+})
+
+watch(invalidOptions, (newValue, oldValue) => {
+	if (!newValue && oldValue) {
+		password.value = ''
+		strength.value = undefined
+	}
+})
 
 export const usePasswordGenerator = () => {
-	debouncedWatch(
-		options,
-		(newOptions) => {
-			password.value = generate(newOptions)
-			const result = passwordStrength(password.value)
+	function generatePassword(passwordOptions: PasswordOptions = { ...options }) {
+		password.value = generate({
+			...passwordOptions,
+			strict: true,
+		})
 
-			if (result.value === 'Too Weak') {
+		const result = passwordStrength(password.value)
+
+		switch (result.value) {
+			case 'Too weak':
 				strength.value = StrengthLevel.TooWeak
-			} else if (result.value === 'Weak') {
+				break
+			case 'Weak':
 				strength.value = StrengthLevel.Weak
-			} else if (result.value === 'Medium') {
+				break
+			case 'Medium':
 				strength.value = StrengthLevel.Medium
-			} else if (result.value === 'Strong') {
+				break
+			case 'Strong':
 				strength.value = StrengthLevel.Strong
-			} else {
-				throw new Error(`Unknown strength level: ${result.value}`)
-			}
-		},
-		{
-			debounce: 1000,
-		},
-	)
+				break
+			default:
+				strength.value = undefined
+		}
+	}
 
 	return {
+		generatePassword,
+		invalidOptions,
 		password,
 		strength,
 		...toRefs(options),

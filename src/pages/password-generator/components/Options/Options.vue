@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import {
+  GenerateButton,
   LowercaseCheckbox,
   NumbersCheckbox,
   OptionLengthSlider,
@@ -28,6 +29,7 @@ const { length } = usePasswordGenerator()
         <SymbolsCheckbox />
       </div>
       <StrengthIndicator />
+      <GenerateButton />
     </div>
   </Container>
 </template>

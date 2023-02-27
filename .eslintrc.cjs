@@ -24,6 +24,7 @@ module.exports = {
     'sort-imports': 'off',
     'node/no-missing-import': 'off',
     'no-shadow': 'off',
+    'no-implicit-coercion': 'off',
     'vue/multi-word-component-names': 'off',
     'newline-per-chained-call': ['error', { ignoreChainWithDepth: 2 }],
     '@typescript-eslint/no-non-null-assertion': 'off',
