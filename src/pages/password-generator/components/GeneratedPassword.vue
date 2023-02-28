@@ -3,14 +3,17 @@ import { Container } from '@/components'
 import { usePasswordGenerator } from '@/composables'
 import { faCopy } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 const { password, invalidOptions } = usePasswordGenerator()
 
 const iconClass = computed(() => ({
   icon: true,
-  'icon-error': invalidOptions.value,
+  'icon-error': invalidOptions.value || password.value === '',
 }))
+
+const showCopied = ref<boolean>(false)
+let copiedTimeout: ReturnType<typeof setTimeout>
 
 const onCopy = () => {
   if (invalidOptions.value) {
@@ -18,6 +21,16 @@ const onCopy = () => {
   }
 
   navigator.clipboard.writeText(password.value)
+
+  if (copiedTimeout) {
+    clearTimeout(copiedTimeout)
+  }
+
+  showCopied.value = true
+
+  copiedTimeout = setTimeout(() => {
+    showCopied.value = false
+  }, 3000)
 }
 </script>
 
@@ -37,18 +50,34 @@ const onCopy = () => {
         v-else
         class="text"
       >
-        {{ password }}
+        <template v-if="password">
+          {{ password }}
+        </template>
+        <template v-else>
+          <span class="not-password">P4$5W0rD!</span>
+        </template>
       </p>
-      <FontAwesomeIcon
-        :class="iconClass"
-        :icon="faCopy"
-      />
+      <div class="copy-container">
+        <Transition>
+          <div
+            v-if="showCopied"
+            class="copied"
+          >
+            copied
+          </div>
+        </Transition>
+        <FontAwesomeIcon
+          :class="iconClass"
+          :icon="faCopy"
+        />
+      </div>
     </div>
   </Container>
 </template>
 
 <style lang="scss" scoped>
 .password {
+  position: relative;
   display: flex;
   height: 4rem;
   align-items: center;
@@ -70,15 +99,33 @@ const onCopy = () => {
     font-size: var(--fs-small) !important;
   }
 
-  .icon {
-    color: var(--clr-neon-green);
-    cursor: pointer;
-    font-size: var(--fs-base);
+  .not-password {
+    color: var(--clr-almost-white);
+    opacity: 0.25;
   }
 
-  .icon-error {
-    color: var(--clr-grey);
-    cursor: not-allowed;
+  .copy-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .copied {
+      margin-top: 0.3rem;
+      color: var(--clr-neon-green);
+      font-size: var(--fs-xsmall);
+      text-transform: uppercase;
+    }
+
+    .icon {
+      color: var(--clr-neon-green);
+      cursor: pointer;
+      font-size: var(--fs-base);
+    }
+
+    .icon-error {
+      color: var(--clr-grey);
+      cursor: not-allowed;
+    }
   }
 
   @media (min-width: 768px) {
@@ -89,8 +136,10 @@ const onCopy = () => {
       line-height: 2.64rem;
     }
 
-    .icon {
-      font-size: var(--fs-large);
+    .copy-container {
+      .icon {
+        font-size: var(--fs-large);
+      }
     }
   }
 }

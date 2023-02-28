@@ -24,6 +24,7 @@ const { generatePassword, invalidOptions } = usePasswordGenerator()
   height: 3.5rem;
   align-items: center;
   justify-content: center;
+  border: 2px solid var(--clr-neon-green);
   background-color: var(--clr-neon-green);
   color: var(--clr-very-dark-grey);
   cursor: pointer;
@@ -32,9 +33,18 @@ const { generatePassword, invalidOptions } = usePasswordGenerator()
   transition: all 0.2s ease;
 
   &[disabled] {
+    border: 2px solid var(--clr-almost-white);
     background-color: var(--clr-grey);
     color: var(--clr-almost-white);
     cursor: not-allowed;
+  }
+
+  &:hover {
+    &:not([disabled]) {
+      border: 2px solid var(--clr-neon-green);
+      background-color: var(--clr-dark-grey);
+      color: var(--clr-neon-green);
+    }
   }
 }
 </style>

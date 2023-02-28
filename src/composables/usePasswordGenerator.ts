@@ -35,7 +35,7 @@ export const usePasswordGenerator = () => {
 		password.value = generate({
 			...passwordOptions,
 			excludeSimilarCharacters: true,
-			strict: false,
+			strict: true,
 		})
 
 		strengthResult.value = passwordStrength(password.value)

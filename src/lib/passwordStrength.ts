@@ -15,25 +15,25 @@ const strengthOptions: Options<any> = [
 		id: 1,
 		value: 'Too Weak!',
 		minDiversity: 1,
-		minLength: 8,
+		minLength: 5,
 	},
 	{
 		id: 2,
 		value: 'Weak',
 		minDiversity: 2,
-		minLength: 8,
+		minLength: 5,
 	},
 	{
 		id: 3,
 		value: 'Medium',
 		minDiversity: 3,
-		minLength: 10,
+		minLength: 8,
 	},
 	{
 		id: 4,
 		value: 'Strong',
 		minDiversity: 4,
-		minLength: 12,
+		minLength: 10,
 	},
 ]
 

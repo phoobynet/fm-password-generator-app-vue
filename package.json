@@ -4,17 +4,18 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "prepare": "husky install",
     "stylelint": "stylelint --fix src/**/*.{vue,css,scss}"
   },
   "dependencies": {
-    "@vueuse/core": "^9.13.0",
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@vueuse/core": "^9.13.0",
+    "@vueuse/motion": "^2.0.0-beta.12",
     "check-password-strength": "^2.0.7",
     "generate-password": "^1.7.0",
     "generate-password-browser": "^1.1.0",
