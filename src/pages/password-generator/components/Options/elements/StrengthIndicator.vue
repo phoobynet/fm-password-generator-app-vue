@@ -1,51 +1,25 @@
 <script lang="ts" setup>
 import { usePasswordGenerator } from '@/composables'
-import { StrengthLevel } from '@/composables/usePasswordGenerator'
-import { computed } from 'vue'
+import { StrengthLevel } from '@/lib/types'
 
-const { strength } = usePasswordGenerator()
-
-const barsClasses = computed(() => ({
-  'too-weak': strength.value === StrengthLevel.TooWeak,
-  weak: strength.value === StrengthLevel.Weak,
-  medium: strength.value === StrengthLevel.Medium,
-  strong: strength.value === StrengthLevel.Strong,
-}))
-
-const strengthDescription = computed(() => {
-  switch (strength.value) {
-    case StrengthLevel.TooWeak:
-      return 'Too weak'
-    case StrengthLevel.Weak:
-      return 'Weak'
-    case StrengthLevel.Medium:
-      return 'Medium'
-    case StrengthLevel.Strong:
-      return 'Strong'
-    default:
-      return ''
-  }
-})
+const { strengthResult } = usePasswordGenerator()
 </script>
 
 <template>
   <div class="strength-indicator">
     <div class="caption">STRENGTH</div>
-    <div
-      class="bars"
-      :class="barsClasses"
-    >
-      <div class="level">{{ strengthDescription }}</div>
+    <div class="bars">
+      <div class="level">{{ strengthResult?.value }}</div>
       <div
         v-for="i in 4"
         :key="i"
         :class="{
           bar: true,
-          filled: i <= strength,
-          'too-weak': strength === 1,
-          weak: strength === 2,
-          medium: strength === 3,
-          strong: strength === 4,
+          filled: i <= strengthResult?.id,
+          'too-weak': strengthResult?.id === StrengthLevel.TooWeak,
+          weak: strengthResult?.id === StrengthLevel.Weak,
+          medium: strengthResult?.id === StrengthLevel.Medium,
+          strong: strengthResult?.id === StrengthLevel.Strong,
         }"
       />
     </div>
@@ -88,10 +62,7 @@ const strengthDescription = computed(() => {
       &.filled {
         border: none;
 
-        &.too-weak {
-          background-color: var(--clr-red);
-        }
-
+        &.too-weak,
         &.weak {
           background-color: var(--clr-red);
         }
