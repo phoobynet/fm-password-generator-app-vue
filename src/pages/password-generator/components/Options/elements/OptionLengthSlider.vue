@@ -94,8 +94,12 @@ $track-height: 0.5rem;
   appearance: none;
   background-color: var(--clr-almost-white);
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 
-  &:active {
+  &:active,
+  &:hover {
+    border: 2px solid var(--clr-neon-green);
+    background-color: var(--clr-very-dark-grey);
     cursor: grabbing;
   }
 }

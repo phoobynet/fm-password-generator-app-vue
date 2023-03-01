@@ -55,13 +55,13 @@ const checkboxValue = computed<boolean>({
 
     &::after {
       position: absolute;
-      top: -1px;
-      left: 4px;
+      top: 1px;
+      left: 5px;
       display: none;
-      width: 8px;
-      height: 15px;
+      width: 6px;
+      height: 13px;
       border: solid black;
-      border-width: 0 3.8px 3.8px 0;
+      border-width: 0 3.5px 3.5px 0;
       content: '';
       transform: rotate(45deg);
     }
@@ -81,6 +81,7 @@ const checkboxValue = computed<boolean>({
   }
 
   .caption {
+    margin-top: -0.1rem;
     margin-left: 2.5rem;
     font-size: var(--fs-small);
   }

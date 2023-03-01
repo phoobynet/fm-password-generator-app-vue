@@ -120,6 +120,16 @@ const onCopy = () => {
       color: var(--clr-neon-green);
       cursor: pointer;
       font-size: var(--fs-base);
+      transition: all 0.2s ease;
+
+      &:hover {
+        color: var(--clr-almost-white);
+      }
+
+      &:active {
+        color: var(--clr-neon-green);
+        transform: scale(0.9);
+      }
     }
 
     .icon-error {

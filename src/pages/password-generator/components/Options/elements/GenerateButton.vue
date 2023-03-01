@@ -28,7 +28,8 @@ const { generatePassword, invalidOptions } = usePasswordGenerator()
   background-color: var(--clr-neon-green);
   color: var(--clr-very-dark-grey);
   cursor: pointer;
-  gap: 1rem;
+  font-size: var(--fs-small);
+  gap: 0.9rem;
   text-transform: uppercase;
   transition: all 0.2s ease;
 

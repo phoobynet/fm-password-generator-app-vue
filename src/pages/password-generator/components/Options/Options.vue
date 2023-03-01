@@ -21,7 +21,9 @@ const { length } = usePasswordGenerator()
         <div>Character Length</div>
         <div>{{ length }}</div>
       </div>
-      <OptionLengthSlider />
+      <div class="slider">
+        <OptionLengthSlider />
+      </div>
       <div class="checkboxes">
         <UppercaseCheckbox />
         <LowercaseCheckbox />
@@ -36,7 +38,9 @@ const { length } = usePasswordGenerator()
 
 <style lang="scss" scoped>
 .options {
+  display: grid;
   padding: 1rem;
+  grid-template-rows: [length] auto [slider] 2.5rem [checkboxes] 12rem [strength] 4.5rem [generate] auto;
 
   .length {
     display: flex;
@@ -55,10 +59,15 @@ const { length } = usePasswordGenerator()
     }
   }
 
+  .slider {
+    align-self: center;
+  }
+
   .checkboxes {
     display: flex;
     flex-direction: column;
-    margin-top: 1.5rem;
+    margin-top: 1.76rem;
+    gap: 0.9rem;
   }
 }
 </style>
