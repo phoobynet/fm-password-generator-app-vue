@@ -3,27 +3,36 @@ import { usePasswordGenerator } from '@/composables'
 import { StrengthLevel } from '@/lib/types'
 
 const { strengthResult } = usePasswordGenerator()
+
+const evalBarClasses = (barIndex: number): Record<string, boolean> => {
+  const id = strengthResult?.value?.id
+
+  if (!id) {
+    return {
+      bar: true,
+    }
+  }
+
+  return {
+    bar: true,
+    filled: barIndex <= id,
+    'too-weak': id === StrengthLevel.TooWeak,
+    weak: id === StrengthLevel.Weak,
+    medium: id === StrengthLevel.Medium,
+    strong: id === StrengthLevel.Strong,
+  }
+}
 </script>
 
 <template>
-  <div
-    v-if="strengthResult"
-    class="strength-indicator"
-  >
+  <div class="strength-indicator">
     <div class="caption">STRENGTH</div>
     <div class="bars">
       <div class="level">{{ strengthResult?.value }}</div>
       <div
         v-for="i in 4"
         :key="i"
-        :class="{
-          bar: true,
-          filled: i <= strengthResult?.id,
-          'too-weak': strengthResult?.id === StrengthLevel.TooWeak,
-          weak: strengthResult?.id === StrengthLevel.Weak,
-          medium: strengthResult?.id === StrengthLevel.Medium,
-          strong: strengthResult?.id === StrengthLevel.Strong,
-        }"
+        :class="evalBarClasses(i)"
       />
     </div>
   </div>

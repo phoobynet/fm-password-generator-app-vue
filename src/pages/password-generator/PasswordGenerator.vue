@@ -1,5 +1,13 @@
 <script lang="ts" setup>
 import { GeneratedPassword, Header, Options } from './components'
+import { usePasswordGenerator } from '@/composables'
+import { onMounted } from 'vue'
+
+const { generatePassword } = usePasswordGenerator()
+
+onMounted(() => {
+  generatePassword()
+})
 </script>
 
 <template>
