@@ -1,18 +1,67 @@
-# Vue 3 + TypeScript + Vite
+# Frontend Mentor - Password generator app solution
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a solution to the [Password generator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/password-generator-app-Mr8CLycqjh). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## Recommended IDE Setup
+## Table of contents
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+- [Author](#author)
 
-## Type Support For `.vue` Imports in TS
+## Overview
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+### The challenge
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Users should be able to:
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- Generate a password based on the selected inclusion options
+- Copy the generated password to the computer's clipboard
+- See a strength rating for their generated password
+- View the optimal layout for the interface depending on their device's screen size
+- See hover and focus states for all interactive elements on the page
+
+### Links
+
+- Solution URL: [Github](https://github.com/phoobynet/fm-password-generator-app-vue)
+- Live Site URL: https://fm-password-generator-app-vue.vercel.app/
+
+## My process
+
+### Built with
+
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+- Vue
+- Vite
+- SCSS
+- ESLint, Stylelint, Prettier, Husky & Lint Staged
+- Google Fonts
+- [Font Awesome](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons)
+- [generate-password-browser](https://www.npmjs.com/package/generate-password-browser)
+- [check-password-strength](https://www.npmjs.com/package/check-password-strength)
+
+### What I learned
+
+- Think in terms of boxes, then components.
+- Get CSS properties done upfront, and give them meaningful names.
+- Work on components first
+  - Break down the design into smaller components
+    - Do the HTML FIRST
+    - Style for mobile
+    - Keep in mind active and hover states
+    - Then do each tablet, desktop, etc
+    - DON'T move on until each **COMPONENTS** layout looks correct on each device
+- Only consider the final page layout until all components layouts match the design.
+- Take regular breaks, and don't get frustrated.
+
+## Author
+
+- Frontend Mentor - [@phoobynet](https://www.frontendmentor.io/profile/phoobynet)
+
