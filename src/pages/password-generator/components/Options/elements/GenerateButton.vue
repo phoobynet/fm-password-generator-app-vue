@@ -13,7 +13,10 @@ const { generatePassword, invalidOptions } = usePasswordGenerator()
     @click="() => generatePassword()"
   >
     <span>generate</span>
-    <FontAwesomeIcon :icon="faArrowRight" />
+    <FontAwesomeIcon
+      :icon="faArrowRight"
+      :size="'xs'"
+    />
   </button>
 </template>
 
@@ -46,6 +49,12 @@ const { generatePassword, invalidOptions } = usePasswordGenerator()
       background-color: var(--clr-dark-grey);
       color: var(--clr-neon-green);
     }
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 4.0625rem;
+    font-size: var(--fs-base);
+    gap: 1.4rem;
   }
 }
 </style>

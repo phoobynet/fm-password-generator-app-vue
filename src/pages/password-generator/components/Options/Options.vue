@@ -69,5 +69,29 @@ const { length } = usePasswordGenerator()
     margin-top: 1.76rem;
     gap: 0.9rem;
   }
+
+  @media screen and (min-width: 768px) {
+    padding: 1.8rem 2rem 0;
+    grid-template-rows: [length] auto [slider] 4.2rem [checkboxes] 12.5rem [strength] 6.5rem [generate] auto;
+
+    .length {
+      :first-child {
+        font-size: var(--fs-base);
+      }
+
+      :last-child {
+        font-size: var(--fs-xlarge);
+      }
+    }
+
+    .slider {
+      align-self: center;
+    }
+
+    .checkboxes {
+      margin-top: 0.9rem;
+      gap: 1.1rem;
+    }
+  }
 }
 </style>

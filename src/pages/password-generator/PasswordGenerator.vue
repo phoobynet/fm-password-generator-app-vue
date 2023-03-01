@@ -5,8 +5,8 @@ import { GeneratedPassword, Header, Options } from './components'
 <template>
   <div class="password-generator">
     <div class="content">
-      <Header />
-      <GeneratedPassword />
+      <Header class="content-header" />
+      <GeneratedPassword class="content-generated-password" />
       <Options />
     </div>
   </div>
@@ -20,13 +20,23 @@ import { GeneratedPassword, Header, Options } from './components'
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  padding-top: 4rem;
-  gap: 1rem;
+  display: grid;
+  grid-template-rows: [header] 5.4rem [generated-password] 5.85rem [options] 26.5rem;
+
+  .content-header {
+    align-self: end;
+  }
+
+  .content-generated-password {
+    align-self: center;
+  }
 
   @media screen and (min-width: 768px) {
-    gap: 1.5rem;
+    grid-template-rows: [header] 10.4rem [generated-password] 8.4rem [options] 32.8rem;
+
+    .content-generated-password {
+      margin-top: 0.3rem;
+    }
   }
 }
 </style>

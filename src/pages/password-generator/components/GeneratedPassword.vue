@@ -139,6 +139,7 @@ const onCopy = () => {
   }
 
   @media (min-width: 768px) {
+    height: 5rem;
     padding: 1.125rem 2rem;
 
     .text {

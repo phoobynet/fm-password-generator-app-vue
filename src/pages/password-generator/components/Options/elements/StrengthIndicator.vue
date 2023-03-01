@@ -79,7 +79,18 @@ const { strengthResult } = usePasswordGenerator()
   }
 
   @media screen and (min-width: 768px) {
-    font-size: var(--fs-base);
+    height: 4.5rem;
+    padding: 0 2rem;
+
+    .caption {
+      font-size: var(--fs-base);
+    }
+
+    .bars {
+      .level {
+        font-size: var(--fs-large);
+      }
+    }
   }
 }
 </style>

@@ -85,5 +85,12 @@ const checkboxValue = computed<boolean>({
     margin-left: 2.5rem;
     font-size: var(--fs-small);
   }
+
+  @media screen and (min-width: 768px) {
+    .caption {
+      margin-left: 2.7rem;
+      font-size: var(--fs-base);
+    }
+  }
 }
 </style>
