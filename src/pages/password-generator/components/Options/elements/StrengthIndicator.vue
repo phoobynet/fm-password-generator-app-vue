@@ -6,7 +6,10 @@ const { strengthResult } = usePasswordGenerator()
 </script>
 
 <template>
-  <div class="strength-indicator">
+  <div
+    v-if="strengthResult"
+    class="strength-indicator"
+  >
     <div class="caption">STRENGTH</div>
     <div class="bars">
       <div class="level">{{ strengthResult?.value }}</div>

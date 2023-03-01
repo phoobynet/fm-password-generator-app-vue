@@ -41,7 +41,7 @@ const updateProgress = (el?: HTMLInputElement) => {
   }
 }
 
-const onInput = (ev: InputEvent) => {
+const onInput = (ev: Event) => {
   const el = ev.currentTarget as HTMLInputElement
 
   updateProgress(el)
