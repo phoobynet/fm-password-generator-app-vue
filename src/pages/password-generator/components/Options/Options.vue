@@ -17,10 +17,13 @@ const { length } = usePasswordGenerator()
 <template>
   <Container>
     <div class="options">
-      <div class="length">
-        <div>Character Length</div>
-        <div>{{ length }}</div>
-      </div>
+      <label
+        class="length"
+        for="characterLength"
+      >
+        <span>Character Length</span>
+        <span>{{ length }}</span>
+      </label>
       <div class="slider">
         <OptionLengthSlider />
       </div>

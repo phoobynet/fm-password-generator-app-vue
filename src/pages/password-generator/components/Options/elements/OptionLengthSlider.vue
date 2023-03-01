@@ -63,6 +63,7 @@ watch(lengthSliderWidth, (newValue) => {
       :style="{ width: `${progressLength}px` }"
     ></div>
     <input
+      id="characterLength"
       ref="lengthSlider"
       type="range"
       :min="minLength"
